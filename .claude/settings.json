@@ -3,7 +3,10 @@
     "allow": [
       "Bash(npm install:*)",
       "Bash(npm uninstall:*)",
-      "Bash(npm ls:*)"
+      "Bash(npm ls:*)",
+      "Bash(npx firebase:*)",
+      "Bash(firebase deploy:*)",
+      "Bash(firebase login:*)"
     ]
   }
 }

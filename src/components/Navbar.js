@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { Button } from './ui/button';
-import { LogOut, Menu, X, GraduationCap } from 'lucide-react';
+import { LogOut, Menu, X, GraduationCap, Shield, BookOpen } from 'lucide-react';
+import { isAdmin } from './AdminRoute';
 
 const Navbar = () => {
   const { currentUser, logout } = useAuth();
@@ -11,9 +12,11 @@ const Navbar = () => {
 
   const navLinks = [
     { label: 'Home', to: '/' },
+    { label: 'Courses', to: '/courses', icon: BookOpen },
+    ...(isAdmin(currentUser) ? [{ label: 'Admin', to: '/admin', icon: Shield }] : []),
   ];
 
-  const isActive = (path) => location.pathname === path;
+  const isActive = (path) => path === '/' ? location.pathname === '/' : location.pathname.startsWith(path);
 
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur-sm">
@@ -28,17 +31,18 @@ const Navbar = () => {
         {/* Desktop nav links */}
         {currentUser && (
           <div className="hidden sm:flex items-center gap-1">
-            {navLinks.map((link) => (
+            {navLinks.map(({ label, to, icon: Icon }) => (
               <Link
-                key={link.to}
-                to={link.to}
-                className={`rounded-md px-3 py-2 text-sm font-medium transition-colors ${
-                  isActive(link.to)
+                key={to}
+                to={to}
+                className={`flex items-center gap-1.5 rounded-md px-3 py-2 text-sm font-medium transition-colors ${
+                  isActive(to)
                     ? 'bg-slate-100 text-slate-900'
                     : 'text-slate-500 hover:bg-slate-100 hover:text-slate-900'
                 }`}
               >
-                {link.label}
+                {Icon && <Icon className="h-4 w-4" />}
+                {label}
               </Link>
             ))}
           </div>
@@ -95,18 +99,19 @@ const Navbar = () => {
               {currentUser.displayName || currentUser.email}
             </span>
           </div>
-          {navLinks.map((link) => (
+          {navLinks.map(({ label, to, icon: Icon }) => (
             <Link
-              key={link.to}
-              to={link.to}
+              key={to}
+              to={to}
               onClick={() => setMenuOpen(false)}
-              className={`block rounded-md px-3 py-2 text-sm font-medium transition-colors ${
-                isActive(link.to)
+              className={`flex items-center gap-1.5 rounded-md px-3 py-2 text-sm font-medium transition-colors ${
+                isActive(to)
                   ? 'bg-slate-100 text-slate-900'
                   : 'text-slate-500 hover:bg-slate-100 hover:text-slate-900'
               }`}
             >
-              {link.label}
+              {Icon && <Icon className="h-4 w-4" />}
+              {label}
             </Link>
           ))}
           <button

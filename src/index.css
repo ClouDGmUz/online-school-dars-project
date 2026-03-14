@@ -15,3 +15,40 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* ── TipTap / Rich content styles ── */
+.prose h1 { font-size: 1.6rem; font-weight: 700; margin: 1.2rem 0 0.6rem; color: #0f172a; }
+.prose h2 { font-size: 1.3rem; font-weight: 700; margin: 1rem 0 0.5rem; color: #0f172a; }
+.prose h3 { font-size: 1.1rem; font-weight: 600; margin: 0.9rem 0 0.4rem; color: #0f172a; }
+.prose p  { margin: 0.5rem 0; color: #334155; }
+.prose strong { font-weight: 700; color: #0f172a; }
+.prose em { font-style: italic; }
+.prose u  { text-decoration: underline; }
+.prose s  { text-decoration: line-through; color: #94a3b8; }
+.prose mark { background: #fef08a; padding: 0 2px; border-radius: 2px; }
+.prose code { background: #f1f5f9; color: #be185d; padding: 1px 5px; border-radius: 4px; font-size: 0.85em; font-family: 'Courier New', monospace; }
+.prose pre  { background: #1e293b; color: #e2e8f0; padding: 1rem 1.25rem; border-radius: 10px; overflow-x: auto; margin: 0.75rem 0; font-size: 0.85em; }
+.prose pre code { background: transparent; color: inherit; padding: 0; }
+.prose blockquote { border-left: 3px solid #6366f1; background: #f8f7ff; padding: 0.6rem 1rem; margin: 0.75rem 0; border-radius: 0 8px 8px 0; color: #475569; font-style: italic; }
+.prose ul  { list-style: disc; padding-left: 1.5rem; margin: 0.5rem 0; }
+.prose ol  { list-style: decimal; padding-left: 1.5rem; margin: 0.5rem 0; }
+.prose li  { margin: 0.25rem 0; color: #334155; }
+.prose hr  { border: none; border-top: 2px solid #e2e8f0; margin: 1.25rem 0; }
+
+/* Tables */
+.prose table { width: 100%; border-collapse: collapse; margin: 0.75rem 0; font-size: 0.875rem; }
+.prose th { background: #f1f5f9; font-weight: 600; color: #0f172a; text-align: left; padding: 0.5rem 0.75rem; border: 1px solid #e2e8f0; }
+.prose td { padding: 0.5rem 0.75rem; border: 1px solid #e2e8f0; color: #334155; vertical-align: top; }
+.prose tr:nth-child(even) td { background: #fafafa; }
+
+/* TipTap selected cell */
+.selectedCell { background: #eff6ff !important; }
+
+/* Placeholder */
+.tiptap p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  color: #94a3b8;
+  pointer-events: none;
+  float: left;
+  height: 0;
+}
