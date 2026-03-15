@@ -20,5 +20,19 @@ service cloud.firestore {
       allow read: if isAuthenticated();
       allow create, update, delete: if isAdmin();
     }
+
+    match /submissions/{submissionId} {
+      // Any student can read all submissions (needed for leaderboard)
+      allow read: if isAuthenticated();
+
+      // Student can only create their own submission
+      allow create: if isAuthenticated()
+        && request.resource.data.userId == request.auth.uid;
+
+      // Only admin can update (teacher review: score, comment, status)
+      allow update: if isAdmin();
+
+      allow delete: if isAdmin();
+    }
   }
 }

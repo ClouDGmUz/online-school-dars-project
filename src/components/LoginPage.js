@@ -51,11 +51,16 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-50 px-4">
-      <Card className="w-full max-w-md">
+    <div className="min-h-screen flex items-center justify-center relative overflow-hidden px-4">
+      {/* Animated background elements */}
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-500/30 rounded-full mix-blend-screen filter blur-3xl opacity-70 animate-blob"></div>
+      <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-fuchsia-500/30 rounded-full mix-blend-screen filter blur-3xl opacity-70 animate-blob" style={{ animationDelay: "2s" }}></div>
+      <div className="absolute bottom-1/4 left-1/3 w-96 h-96 bg-blue-500/30 rounded-full mix-blend-screen filter blur-3xl opacity-70 animate-blob" style={{ animationDelay: "4s" }}></div>
+
+      <Card className="w-full max-w-md relative z-10 animate-slide-up">
         <CardHeader className="text-center">
-          <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-slate-900">
-            <LogIn className="h-6 w-6 text-white" />
+          <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-500 to-fuchsia-500 shadow-glow">
+            <LogIn className="h-7 w-7 text-white" />
           </div>
           <CardTitle>Welcome back</CardTitle>
           <CardDescription>Sign in to your account to continue</CardDescription>
@@ -118,10 +123,10 @@ const LoginPage = () => {
 
           <div className="relative">
             <div className="absolute inset-0 flex items-center">
-              <span className="w-full border-t border-slate-200" />
+              <span className="w-full border-t border-white/10" />
             </div>
             <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-white px-2 text-slate-500">Or continue with</span>
+              <span className="bg-[#1e1b4b] px-3 text-slate-400 rounded-full border border-white/5">Or continue with</span>
             </div>
           </div>
 
@@ -153,9 +158,9 @@ const LoginPage = () => {
           </Button>
         </CardContent>
 
-        <CardFooter className="justify-center text-sm text-slate-500">
+        <CardFooter className="justify-center text-sm text-slate-400 border-t border-white/5 pt-6 mt-2">
           Don't have an account?&nbsp;
-          <Link to="/register" className="font-medium text-slate-900 hover:underline">
+          <Link to="/register" className="font-medium text-brand-400 hover:text-brand-300 hover:underline transition-colors">
             Sign up
           </Link>
         </CardFooter>

@@ -9,6 +9,7 @@ import HomePage from './components/HomePage';
 import CoursesPage from './components/CoursesPage';
 import CourseDetailPage from './components/CourseDetailPage';
 import AdminPage from './components/AdminPage';
+import LeaderboardPage from './components/LeaderboardPage';
 import Navbar from './components/Navbar';
 
 function App() {
@@ -38,6 +39,11 @@ function App() {
             <AdminRoute>
               <AdminPage />
             </AdminRoute>
+          } />
+          <Route path="/leaderboard" element={
+            <PrivateRoute>
+              <LeaderboardPage />
+            </PrivateRoute>
           } />
         </Routes>
       </Router>
